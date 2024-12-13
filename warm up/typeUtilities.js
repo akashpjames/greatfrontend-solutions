@@ -26,6 +26,7 @@ export function isBoolean(value) {
   
   export function isSymbol(value) {
     return typeof value === 'symbol'
+    //return value.constructor.name === 'Symbol';
   }
   
   export function isUndefined(value) {
