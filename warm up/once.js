@@ -18,8 +18,8 @@ incrementByOnce(2); // i is still 4 as it is not modified.
 */
 
 export default function once(func) {
-    const executed = false;
-    const result;
+    let executed = false;
+    let result;
     return function(...args) {
       if(executed) return result;
       executed = true;
