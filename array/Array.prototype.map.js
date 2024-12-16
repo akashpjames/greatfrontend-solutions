@@ -11,9 +11,9 @@ Array.prototype.myMap = function (callbackFn, thisArg) {
     const len = this.length;
     for(let i=0; i<len; i++) {
       const current = this[i];
+      // Ignoring sparse values from arrays
       if(Object.hasOwn(this, i)) {
-        const val = callbackFn.call(thisArg, current, i, this);
-        results[i] = val; // results.push will fail the sparse testcase
+          results[i] = callbackFn.call(thisArg, current, i, this); // results.push will fail the sparse testcase
       }
     }
     return results;

@@ -22,6 +22,5 @@ Array.prototype.myFilter = function (callbackFn, thisArg) {
           result.push(currentVal);
       }
     }
-  
     return result;
   };
