@@ -10,9 +10,13 @@ multiplyAge.myApply(mary); // 21
 */
 Function.prototype.myApply = function (thisArg, argArray) {
     // If context is null or undefined, set it to the global object (window in browsers)
-    thisArg = thisArg || globalThis;
+    thisArg = thisArg || globalThis; // Other option is to convert like Object(thisArg)
     const sym = Symbol();
-    thisArg[sym] = this;
+    // thisArg[sym] = this;
+    Object.defineProperty(thisArg, sym, {
+        enumerable: false,
+        value: this
+    });
     if (!Array.isArray(argArray) && argArray !== undefined) {
         throw new TypeError('Second argument must be an array or undefined');
     }
