@@ -13,6 +13,7 @@ Array.prototype.myMap = function (callbackFn, thisArg) {
       const current = this[i];
       // Ignoring sparse values from arrays
       if(Object.hasOwn(this, i)) {
+          // It is worth mentioning that thisArg doesn't do anything if the callbackFn is arrow fn
           results[i] = callbackFn.call(thisArg, current, i, this); // results.push will fail the sparse testcase
       }
     }
