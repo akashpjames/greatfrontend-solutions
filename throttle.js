@@ -20,15 +20,13 @@ throttledIncrement(); // i = 2
 */
 
 export default function throttle(func, wait) {
-  const canRunNow = true;
+  let timerId;
   return function(...args) {
-    if(!canRunNow) {
-      return;
-    } 
-    canRunNow = false;
-    func.call(this, ...args);
-    setTimeout(() => {
-      canRunNow = true;
-    }, wait)
+    if(!timerId) {
+      func.apply(this, args);
+      timerId = setTimeout(() => {
+        timerId = undefined;
+      }, wait);
+    }
   }
 }
