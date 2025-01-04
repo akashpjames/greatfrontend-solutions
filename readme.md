@@ -6,8 +6,8 @@ This repository contains solutions to coding challenges from GreatFrontend
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/repo-name.git
-cd repo-name
+git clone https://github.com/akashpjames/greatfrontend-solutions.git
+cd greatfrontend-solutions
 ```
 2. Explore the directories for specific solutions or utilities.
 
