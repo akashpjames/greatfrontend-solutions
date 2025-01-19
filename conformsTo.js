@@ -19,3 +19,13 @@ export default function conformsTo(object, source) {
 
     return true; // All predicates passed
 }
+
+function conformsTo2(object, source) {
+    return Object.keys(source).every(key => {
+        return (
+            Object.hasOwn(source, key) &&
+            Object.hasOwn(object, key) &&
+            source[key](object[key])
+        );
+    });
+}
