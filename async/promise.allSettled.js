@@ -28,32 +28,22 @@ await promiseAllSettled([p0, p1, p2]);
 
 export default function promiseAllSettled(iterable) {
     const result = [];
-    const totalPromises = iterable.length;
-    // const results = new Array(totalPromises);
-    let pendingPromises = totalPromises;
     return new Promise((resolve) => {
-  
-      if(totalPromises === 0) { resolve(result);}
-  
-      for(let i=0; i < totalPromises; i++) {
-        Promise.resolve(iterable[i])
-        .then(val => {
-            result[i] = {
-              status: 'fulfilled',
-              value: val
-            }
-          })
-          .catch(err => {
-            result[i] = {
-              status: 'rejected',
-              reason: err
-            }
-          }).finally(() => {
-            pendingPromises--;
-            if(pendingPromises <= 0) {
-              resolve(result)
-            }
-          })
-      }
-    })
-  }
+        let total = iterable.length;
+        if (!total) resolve(result);
+
+        // Use iterable.entries() to get both index and value.
+        for (const [index, item] of iterable.entries()) {
+            Promise.resolve(item)
+                .then((value) => {
+                    result[index] = { status: 'fulfilled', value };
+                })
+                .catch((reason) => {
+                    result[index] = { status: 'rejected', reason };
+                })
+                .finally(() => {
+                    if (--total === 0) resolve(result);
+                });
+        }
+    });
+}
