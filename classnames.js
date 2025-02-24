@@ -94,3 +94,35 @@ export default function classNames(...args) {
   
     return classes.join(' ');
   }
+
+
+  // Just one more way of writing it. Logic is same. I like this version better.
+
+export default function classNames(...args) {
+  const result = [];
+  for (const currentArg of args) {
+    if (!currentArg) continue;
+    //Handle Arrays
+    if (Array.isArray(currentArg)) {
+      const calculated = classNames(...currentArg);
+      if (calculated.length) {
+        result.push(calculated);
+      }
+      continue;
+    }
+    //Handle objects
+    if (typeof currentArg === "object") {
+      for (const key in currentArg) {
+        if (Object.hasOwn(currentArg, key) && currentArg[key]) {
+          result.push(key);
+        }
+      }
+      continue;
+    }
+    if (typeof currentArg === "string" || typeof currentArg === 'number') {
+      result.push(currentArg);
+      continue;
+    }
+  }
+  return result.join(" ");
+}
