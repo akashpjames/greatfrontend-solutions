@@ -27,10 +27,10 @@ export default function debounce(func, wait) {
     //don't use arrow function here as `this` value of the returned
     //function needs to be dynamically determined while executing
     return function(...args) {
-      clearTimeout(timer);
+      clearTimeout(timer);// cleanTimeout doesn't complain even if we pass invalid value.
       timer =  setTimeout(() => {
         // here we are able to use `this` directly, because of arrow function
-        // otherwise, we had to save this in a variable and use it.
+        // otherwise, we have to save `this` in a variable and use it.
         func.call(this, ...args);
       }, wait);
     }

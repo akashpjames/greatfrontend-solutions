@@ -4,7 +4,6 @@ You can assume the input only contains JSON-serializable values (null, boolean, 
 and will not contain any other objects like Date, Regex, Map or Set.
 */
 
-
 /*
 - Here property descriptors are not copied to cloned object.
 - If object has circular reference, the current solution will break and cause a stack overflow
@@ -35,6 +34,9 @@ export default function deepClone(value) {
       result[key] = deepClone(value[key]);
     }
   }
-
+  //Alternative approach - here enumerable properties are ignored by default
+  // for(const key of Object.keys(value)) {
+  //   result[key] = deepClone(value[key]);
+  // }
   return result;
 }
