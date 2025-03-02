@@ -29,6 +29,15 @@ export default function camelCaseKeys(object) {
         return newObject;
     }
 
+    // //handle objects using reduce
+    // if (type === "object") {
+    //     const keys = Object.keys(object);
+    //     return keys.reduce((newObject, key) => {
+    //         newObject[convertToCamelCase(key)] = camelCaseKeys(object[key]);
+    //         return newObject;
+    //     }, {});
+    // }
+
     return object;
 }
 
