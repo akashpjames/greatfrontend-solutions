@@ -20,8 +20,8 @@ incrementByAtMostThrice(2); // i is still 4 as it is not modified. The function 
 */
 
 export default function limit(func, n) {
-  const maxAllowedCalls = n;
-  const lastResult;
+  let maxAllowedCalls = n;
+  let lastResult;
   return function(...args) {
     if(maxAllowedCalls <= 0) {
       return lastResult;

@@ -30,7 +30,7 @@ export default function promiseAny(iterable) {
       const errors = [];
       const len = iterable.length;
       let pendingPromises = len;
-      if(!len) reject(AggregateError([])
+      if(!len) {reject(new AggregateError([]))}
       for(let i=0; i<len; i++) {
         Promise.resolve(iterable[i]).then((val) => {
           pendingPromises--;
@@ -39,7 +39,7 @@ export default function promiseAny(iterable) {
           errors[i]= err;
           pendingPromises--
           if(pendingPromises === 0) {
-            reject(AggregateError(errors))
+            reject(new AggregateError(errors))
           }
         })
       }
